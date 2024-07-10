@@ -20,10 +20,10 @@ net =InceptionV3(weights='imagenet', include_top=False,  input_shape=(img_height
     ])
 ```
 We used architecture InceptionV3 without fully connected layers.
-Input size of image is img_height=??? and img_width=???
+Input size of image is `img_height=img_width=224`
 All layers are trainable.
 After convolutional pare of InceptionV3 we added four layers: Dropout(0.50), GlobalAveragePooling2D(), Dense(512, activation='relu'), and Dense(NUM_CLASSES, activation='softmax').
-NUM_CLASSES
+`NUM_CLASSES=5`.
 
 **OnSimulData** is trained on simulated data only: Inception V3 network, trained on simulated sherds, sizes of the sherds 10-30% of the whole vessels, trained for 10 epochs before overfitting.
 
