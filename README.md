@@ -25,10 +25,11 @@ All layers are trainable.
 After convolutional pare of InceptionV3 we added four layers: Dropout(0.50), GlobalAveragePooling2D(), Dense(512, activation='relu'), and Dense(NUM_CLASSES, activation='softmax').
 NUM_CLASSES
 
+**OnSimulData** is trained on simulated data only: Inception V3 network, trained on simulated sherds, sizes of the sherds 10-30% of the whole vessels, trained for 10 epochs before overfitting.
 
+**OnRealData** is **OnSimulData** additionally trained on real data: Inception V3 network, fine-tuned on training set of 5 real classes (25 epochs)
 
-We publish two models:
-
+To access models you should click word "Releases" and then select one of two models.
 
 
 
