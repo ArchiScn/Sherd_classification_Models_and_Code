@@ -33,6 +33,6 @@ To access models you should click word "Releases" and then select one of two mod
 
 
 
-Code for training of CNN can be found in  ???
+Code used for training of CNN can be found in file **InceptionV3_training_evaluation.py**
 
 Code to simulate artificial sherds can be found in ???
