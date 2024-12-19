@@ -1,0 +1,199 @@
+import bpy
+import numpy as np
+import json
+import random
+import os
+from mathutils import Vector
+from datetime import datetime
+from addon_utils import enable
+
+###~~~Z. Clean scene
+def Clean_Scene():
+   for obj in bpy.data.objects:
+       bpy.data.objects.remove(obj)
+Clean_Scene()
+
+for i in range(1000):
+    print("running times now is:" +str(i))
+    
+
+    Pot_Type = 'dr27a'
+
+    ###~~~Z. pieces number
+    S_Limit = 4
+
+    ###~~~Z. Setting the time and random stamp for picture
+    date = datetime.now().strftime("%Y%m%d%H%M%S")
+
+
+    ###~~~Z. Setting the color
+    NumX = random.randint(0, 550)
+    NumX_1 = random.randint(0, NumX)
+    color_r = 0.761
+    color_b = NumX/1000
+    color_g = NumX_1/1000
+    color_a = 1
+
+
+
+
+    ###~~~Z. GLOBAL VARIABLES 
+    Test_Path_out = 'D:\\Donnie\\Current_processing\\BlenderTest\\Picture\\'
+    path_out = 'D:\\Donnie\\Current_processing\\BlenderTest\\Picture\\'
+    path_to_profiles = 'D:\\Donnie\\Current_processing\\BlenderTest\\Info\profiles\\'
+    pot_class = Pot_Type
+    sherd_times = 1 
+
+    def Select_Fun(obj_):
+        bpy.ops.object.select_all(action='DESELECT')
+        bpy.data.objects[obj_.name].select_set(True)
+        bpy.context.view_layer.objects.active  = obj_
+        
+        
+    class Generate_Pot():
+        def __init__(self, path_to_profiles = path_to_profiles, pot_type = pot_class):
+            self.path_to_profiles = path_to_profiles
+            self.pot_type = pot_type
+            self.error_threshold_pot = 0.05
+            self.jump_coords = 3
+            self.screw_steps = 30
+            self.scale_size = 5
+            self.pot_location = (0, 0, 0)
+            self.default_pot_color = (0.761, 0.541, 0.361, 1)
+            self.pot_metallic = 0.531
+            self.pot_specular = 0.932
+            self.pot_roughness = 0.831
+            self.flipped = False
+            
+        def Create_Pot(self, blender_file = None):
+            if blender_file !=None:
+                          
+                ###~~~Z. Append all objects starting with 'house'
+                with bpy.data.libraries.load(blender_file) as (data_from, data_to):
+                    data_to.objects = [name for name in data_from.objects]
+
+                for obj in data_to.objects:
+                    if obj is not None:
+                        bpy.context.collection.objects.link(obj)    
+
+                section   = '\\Object\\'
+                directory = blender_file + section
+                filename  = 'pot_curve'
+                bpy.ops.wm.append(filename=filename, directory=directory)
+           
+            else:
+                path_to_profile = self.path_to_profiles
+                with open(os.path.join(path_to_profile, self.pot_type + '.json'), 'r') as file:
+                    data = json.load(file)
+                print('done01')   
+                if self.flipped:
+                    max_z = np.max(data['z'])
+                    data['z'] = [ max_z - z_pos for z_pos in data['z']]
+               
+                ###~~~Z. Scaling pot dims    
+                scale_ = np.max(data['rho'] +data['z'])/self.scale_size           
+                curve = bpy.data.curves.new(name="pot_curve", type='CURVE')
+
+    #            curve.dimensions = '2D'
+    #            curve.bevel_depth = 0
+                
+                ###~~~Z. Create an object with it    
+                obj = bpy.data.objects.new("pot_curve", curve)
+                bpy.context.scene.collection.objects.link(obj)
+                Select_Fun(bpy.data.objects["pot_curve"])
+
+                bpy.ops.object.mode_set(mode='EDIT')
+                
+                bpy.ops.curve.draw(error_threshold=self.error_threshold_pot,
+                fit_method='REFIT', corner_angle=0.022173, use_cyclic=True,
+                 stroke=[{"name":"", "location":(i/scale_, 0., j/scale_), "mouse":(0,0),"mouse_event":(0,0),"x_tilt":0,"y_tilt":0, "pressure":1, "size":0,
+                  "pen_flip":False, "time":0, "is_start":False,} for i, j in \
+                   zip(data['rho'][::self.jump_coords],
+                    data['z'][::self.jump_coords])],
+                  wait_for_input=False)
+                  
+                bpy.ops.object.mode_set(mode='OBJECT')
+                bpy.ops.object.convert(target='MESH')
+                obj.modifiers.new('sc1',type='SCREW')
+                obj.modifiers["sc1"].steps = self.screw_steps
+                bpy.ops.object.modifier_apply(modifier="sc1")
+                
+                ob = bpy.context.active_object
+
+
+                # Get material
+                mat = bpy.data.materials.get("Pot_Color")
+                if mat is None:
+                    # create material
+                    mat = bpy.data.materials.new(name="Pot_Color")
+
+                # Assign it to object
+                if ob.data.materials:
+                    # assign to 1st material slot
+                    ob.data.materials[0] = mat
+                else:
+                    # no slots
+                    ob.data.materials.append(mat)
+                  
+    #            
+
+                
+    def Get_Sherd(blender_file = None):
+        obj_ = Generate_Pot()
+        #    blender_file='C:/Users/sjjj1/Downloads/dr36_4_leaves.blend'
+        obj_.Create_Pot(blender_file)
+        
+    Get_Sherd()    
+    ob = bpy.context.active_object
+    #get the whole vertices
+    whole = ob.data
+    num_whole_v = len(whole.vertices)
+    num_whole_e = len(whole.edges)
+    num_whole_f = len(whole.polygons)
+    
+    bpy.ops.object.material_slot_add()
+    bpy.context.object.active_material_index = 1
+    mat1 = bpy.data.materials.get("Int_Color")
+    if mat1 is None:
+        # create material
+        mat1 = bpy.data.materials.new(name="Int_Color")
+
+    # Assign it to object
+    if ob.data.materials:
+        # assign to 1st material slot
+        ob.data.materials[1] = mat1
+    else:
+        # no slots
+        ob.data.materials.append(mat1)       
+        
+    ###~~~Z. enable 'cell fracture' to save the piece as fbx file
+
+    enable('object_fracture_cell')
+    bpy.ops.object.add_fracture_cell_objects(source_limit = S_Limit, material_index = 1, collection_name = "Pot_pieces")
+
+
+    random_number = random.randint(1,100)
+    ###~~~Z. Save the piece to 'fbx' files
+    objects = bpy.data.collections['Pot_pieces']
+    for object in objects.objects:
+        bpy.ops.object.select_all(action = 'DESELECT')
+        object.select_set(state = True)
+        obj = object.data
+        num_obj = len(obj.vertices)
+        percen = int((num_obj/num_whole_v)*100)
+        
+        exportName = Test_Path_out + Pot_Type + '_' + object.name + date + str(random_number) + '_' + format(str(percen),'0>3s') + '.fbx'
+        bpy.ops.export_scene.fbx(filepath = exportName, use_selection = True)
+    
+#    for m in bpy.data.materials:
+#        bpy.data.materials.remove(m)
+    obj = bpy.context.object
+    obj.data.materials.clear()
+            
+#    collection_sherd = bpy.data.collections.get('Pot_pieces')
+#    for obj in collection_sherd.objects:
+#        bpy.data.objects.remove(obj, do_unlink = True)
+#        
+#    bpy.data.collections.remove(collection_sherd)
+    
+    Clean_Scene()
