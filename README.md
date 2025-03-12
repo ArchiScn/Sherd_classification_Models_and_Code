@@ -1,17 +1,11 @@
-#Arch-I-Scan Project Sherd Classification Model and Code Repository
+# Arch-I-Scan Project Sherd Classification Model and Code Repository
 This repository contains code and Convolutional Neural Network (CNN) models coming out of the Arch-I-Scan Project, the work of which towards automatic classification of sherd material is published as ***INTERNET ARCHAEOLOGY REFERENCE***.
-The detailed description and files are presented in the following repositories:
-1.	CNN models. This repository contains the formed CNN models developed to automatically classify sherds of Roman-era terra sigillata pottery, produced in Gaul, from archaeological contexts in Britain.
-2.	Simulation Code. This repository contains the code that was used to generate the images of simulated sherds for pretraining the CNN model in order to compensate for the limited size of the dataset of photographs of real sherds.
+Repository contains:
+1.	*CNN models* developed to automatically classify sherds of Roman-era terra sigillata pottery, produced in Gaul, from archaeological contexts in Britain can be found in Releases. Derscrioption of models is presented below.
+2.	*Simulation Code* is the code that was used to generate the images of simulated sherds for pretraining the CNN model in order to compensate for the limited size of the dataset of photographs of real sherds.
 The photograph data used to train these models, as well as the 3D models of vessel forms that underlie the simulation process can be found at (***REF ADS***).
 
-
-
-
-# Sherd project
-This repository contains code and models for ArchIScan project for sherd recognition.
-
-## Models
+## CNN Models
 Models can be found in Releases. 
 We publish two models: **OnSimulData** and **OnRealData**. Both models have the same architecture:
 
