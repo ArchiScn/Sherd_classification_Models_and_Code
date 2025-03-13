@@ -2,7 +2,8 @@
 This repository contains code and Convolutional Neural Network (CNN) models coming out of the Arch-I-Scan Project, the work of which towards automatic classification of sherd material is published as ***INTERNET ARCHAEOLOGY REFERENCE***.
 Repository contains:
 1.	*CNN models* developed to automatically classify sherds of Roman-era terra sigillata pottery, produced in Gaul, from archaeological contexts in Britain can be found in Releases. Derscrioption of models is presented below.
-2.	*Simulation Code* is the code that was used to generate the images of simulated sherds for pretraining the CNN model in order to compensate for the limited size of the dataset of photographs of real sherds.
+2.	*Simulation code* is the code that was used to generate the images of simulated sherds for pretraining the CNN model in order to compensate for the limited size of the dataset of photographs of real sherds.
+3.	*CNN training code* is the code that was used to train CNN.
 The photograph data used to train these models, as well as the 3D models of vessel forms that underlie the simulation process can be found at (***REF ADS***).
 
 ## CNN Models
@@ -36,7 +37,8 @@ After convolutional pare of InceptionV3 we added four layers: Dropout(0.50), Glo
 To access models you should click word "Releases" and then select one of two models.
 
 
-
-Code used for training of CNN can be found in file **InceptionV3_training_evaluation.py**
-
+## Simulation code
 Code to simulate artificial sherds can be found in folder **Simulations**. Instruction is presented in file **Simulations/ReadMe.docx**
+
+## CNN training code
+Code used for training of CNN can be found in file **InceptionV3_training_evaluation.py**
