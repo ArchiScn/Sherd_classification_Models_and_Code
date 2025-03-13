@@ -42,3 +42,7 @@ Code to simulate artificial sherds can be found in folder **Simulations**. Instr
 
 ## CNN training code
 Code used for training of CNN can be found in file **InceptionV3_training_evaluation.py**
+
+## Citation of Arch-I-Scan project data
+Please cite this dataset as<br>
+Núñez Jareño, S.J.; van Helden, D.P.; Mirkes, E.M.; Zheng Z.; Tyukina, T.A.; Tyukin, I.Y.; Allison, P. Arch-I-Scan data repository. Avaiulable online https://github.com/ArchiScn/Access, 2025.
