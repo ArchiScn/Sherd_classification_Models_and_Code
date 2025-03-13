@@ -8,8 +8,7 @@ The photograph data used to train these models, as well as the 3D models of vess
 
 ## CNN Models
 Models can be found in Releases. 
-We publish two models: **OnSimulData** and **OnRealData**. Both models have the same architecture:
-
+This repository contains the formed CNN models developed to automatically classify sherds of Roman-era terra sigillata pottery, produced in Gaul, from archaeological contexts in Britain. Two models, representing two stages of the training process, are made available: **OnSimulData** and **OnRealData**. Both models have the same architecture:
 ```
 net =InceptionV3(weights='imagenet', include_top=False,  input_shape=(img_height,img_width,3))
 
@@ -30,7 +29,7 @@ All layers are trainable.
 After convolutional pare of InceptionV3 we added four layers: Dropout(0.50), GlobalAveragePooling2D(), Dense(512, activation='relu'), and Dense(NUM_CLASSES, activation='softmax').
 `NUM_CLASSES=5`.
 
-**OnSimulData** is trained on simulated data only: Inception V3 network, trained on simulated sherds, sizes of the sherds 10-30% of the whole vessels, trained for 10 epochs before overfitting.
+**OnSimulData** is trained on simulated data only: Inception V3 network, trained on simulated sherds, the sherds were sized 10-30% of the whole vessels, the model was trained for 10 epochs before overfitting.
 
 **OnRealData** is **OnSimulData** additionally trained on real data: Inception V3 network, fine-tuned on training set of 5 real classes (25 epochs)
 
