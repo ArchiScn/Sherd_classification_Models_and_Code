@@ -1,14 +1,14 @@
 # Arch-I-Scan Project Sherd Classification Model and Code Repository
-This repository contains code and Convolutional Neural Network (CNN) models coming out of the Arch-I-Scan Project, the work of which towards automatic classification of sherd material is published as ***INTERNET ARCHAEOLOGY REFERENCE***.
+This repository contains the Convolutional Neural Network (CNN) models and code used and developed by the Arch-I-Scan Project, towards automatic classification of sherd material is published as ***INTERNET ARCHAEOLOGY REFERENCE***.
 Repository contains:
-1.	*CNN models* developed to automatically classify sherds of Roman-era terra sigillata pottery, produced in Gaul, from archaeological contexts in Britain can be found in Releases. Derscrioption of models is presented below.
+1.	*CNN models* developed to automatically classify sherds of Roman-era *terra sigillata* pottery, produced in Gaul, from archaeological contexts in Britain can be found in Releases. Description of the models is presented below.
 2.	*Simulation code* is the code that was used to generate the images of simulated sherds for pretraining the CNN model in order to compensate for the limited size of the dataset of photographs of real sherds.
-3.	*CNN training code* is the code that was used to train CNN.
+3.	*CNN training code* is the code that was used to train the CNN models.
 The photograph data used to train these models, as well as the 3D models of vessel forms that underlie the simulation process can be found at (***REF ADS***).
 
 ## CNN Models
-Models can be found in Releases. 
-This repository contains the formed CNN models developed to automatically classify sherds of Roman-era terra sigillata pottery, produced in Gaul, from archaeological contexts in Britain. Two models, representing two stages of the training process, are made available: **OnSimulData** and **OnRealData**. Both models have the same architecture:
+The models can be found in **Releases**. 
+This repository contains the formed CNN models developed to automatically classify sherds of Roman-era *terra sigillata* pottery, produced in Gaul, from archaeological contexts in Britain. Two models, representing two stages of the training process, are made available: **OnSimulData** and **OnRealData**. Both models have the same architecture:
 ```
 net =InceptionV3(weights='imagenet', include_top=False,  input_shape=(img_height,img_width,3))
 
@@ -24,7 +24,7 @@ net =InceptionV3(weights='imagenet', include_top=False,  input_shape=(img_height
     ])
 ```
 We used architecture InceptionV3 without fully connected layers.
-Input size of image is `img_height=img_width=224`
+The input size of image is `img_height=img_width=224`
 All layers are trainable.
 After convolutional pare of InceptionV3 we added four layers: Dropout(0.50), GlobalAveragePooling2D(), Dense(512, activation='relu'), and Dense(NUM_CLASSES, activation='softmax').
 `NUM_CLASSES=5`.
