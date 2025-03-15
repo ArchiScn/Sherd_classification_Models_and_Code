@@ -42,7 +42,7 @@ Code to simulate artificial sherds can be found in folder **Simulations**. Instr
 ## CNN training code
 Code used for training of CNN can be found in file **InceptionV3_training_evaluation.py**
 
-## Acknowledgment
+## Acknowledgements
 The authors would like to thank the Arts and Humanities Research Council (UK) for funding the Arch-I-Scan Project (Grant number AH/T001003/1) and the partner organisations for access to their terra sigillata collections.
 
 ## Citation for the Arch-I-Scan Project Repositories
