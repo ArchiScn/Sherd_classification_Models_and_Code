@@ -24,9 +24,9 @@ net =InceptionV3(weights='imagenet', include_top=False,  input_shape=(img_height
     ])
 ```
 We used architecture InceptionV3 without fully connected layers.
-The input size of image is `img_height=img_width=224`
+The input size of the image is `img_height=img_width=224`
 All layers are trainable.
-After convolutional part of InceptionV3 we added four layers: Dropout(0.50), GlobalAveragePooling2D(), Dense(512, activation='relu'), and Dense(NUM_CLASSES, activation='softmax').
+After the convolutional part of InceptionV3 we added four layers: Dropout(0.50), GlobalAveragePooling2D(), Dense(512, activation='relu'), and Dense(NUM_CLASSES, activation='softmax').
 `NUM_CLASSES=5`.
 
 **OnSimulData** is trained on simulated data only: Inception V3 network, trained on simulated sherds, the sherds were sized 10-30% of the whole vessels, the model was trained for 10 epochs before overfitting.
@@ -37,7 +37,7 @@ To access the models you should click the menu item 'Releases" and then select o
 
 
 ## Simulation code
-The code to simulate artificial sherds can be found in the folder **Simulations**. Instructions are presented in file **Simulations/ReadMe.docx**
+The code to simulate artificial sherds can be found in the folder **Simulations**. Instructions are presented in the file **Simulations/ReadMe.docx**
 
 ## CNN training code
 Code used for training of CNN can be found in file **InceptionV3_training_evaluation.py**
