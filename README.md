@@ -33,7 +33,7 @@ After convolutional part of InceptionV3 we added four layers: Dropout(0.50), Glo
 
 **OnRealData** is **OnSimulData** additionally trained on real data: Inception V3 network, fine-tuned on training set of 5 real classes (25 epochs)
 
-To access the models you should click the menu item "Releases" and then select one of the two models.
+To access the models you should click the menu item 'Releases" and then select one of the two models.
 
 
 ## Simulation code
