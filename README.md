@@ -47,4 +47,4 @@ The authors would like to thank the Arts and Humanities Research Council (UK) fo
 
 ## Citation for the Arch-I-Scan Project Repositories
 Please cite this repository as<br>
-Mirkes, E.M.; van Helden, D.P.;; Zheng Z.; Tyukina, T.A.; Tyukin, I.Y.; Núñez Jareño, S.J.; Allison, P. The Arch-I-Scan Project repositories. Available online https://github.com/ArchiScn/Access, 2025.
+Mirkes, E.M.; van Helden, D.P.; Zheng Z.; Tyukina, T.A.; Tyukin, I.Y.; Núñez Jareño, S.J.; Allison, P. The Arch-I-Scan Project repositories. Available online https://github.com/ArchiScn/Access, 2025.
