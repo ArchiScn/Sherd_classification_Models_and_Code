@@ -29,12 +29,11 @@ All layers are trainable.
 After the convolutional part of InceptionV3 we added four layers: Dropout(0.50), GlobalAveragePooling2D(), Dense(512, activation='relu'), and Dense(NUM_CLASSES, activation='softmax').
 `NUM_CLASSES=5`.
 
-**OnSimulData** is trained on simulated data only: Inception V3 network, trained on simulated sherds, the sherds were sized 10-30% of the whole vessels, the model was trained for 10 epochs before overfitting.
+The model **OnSimulData** is trained on simulated data only. It uses the architecture described above,. It is based on the Inception V3 network and trained trained on simulated sherds. The sherds were sized such that each represented 10-30% of a whole vessel. The model was trained for 10 epochs before overfitting.
 
-**OnRealData** is **OnSimulData** additionally trained on real data: Inception V3 network, fine-tuned on training set of 5 real classes (25 epochs)
+The model **OnRealData** is the same model as **OnSimulData**, but additionally trained on real data. It therefore is the same Inception V3 network, fine-tuned on a training set of real photographs of sherds of *terra sigillata* pottery from 5 classes (Dr 27, Dr33, Dr35, Dr37, and Dr38). It was trained for 25 epochs.
 
 To access the models you should click the menu item 'Releases" and then select one of the two models.
-
 
 ## Simulation code
 The code to simulate artificial sherds can be found in the folder **Simulations**. Instructions are presented in the file **Simulations/ReadMe.docx**
